@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notse_app/views/widgets/custom_apbar.dart';
+import 'package:notse_app/views/widgets/custom_list_view.dart';
 import 'package:notse_app/views/widgets/custom_notes_card.dart';
 
 class NotesBody extends StatelessWidget {
@@ -13,11 +14,10 @@ class NotesBody extends StatelessWidget {
       children: [ 
         SizedBox(height: 40,),
          CustomApbar(),
-         SizedBox(height: 8,),
-         CustomNotesCard(),
+        // SizedBox(height: 8,),
+         Expanded(child: CustomListView()),
       ],
          ),
     );
   }
 }
-
