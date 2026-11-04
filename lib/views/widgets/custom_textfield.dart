@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField({super.key, required this.customHint});
+  const CustomTextField({super.key, required this.customHint, this.maxlines = 1});
   final String customHint;
+  final int maxlines;
   @override
   Widget build(BuildContext context) {
 
    return TextField(
+    maxLines: maxlines,
   style: const TextStyle(
     fontSize: 15,
     fontWeight: FontWeight.w500,
