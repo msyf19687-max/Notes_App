@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notse_app/views/edit_card_page.dart';
 import 'package:notse_app/views/widgets/custom_notes_card.dart';
 
 class CustomListView extends StatelessWidget {
@@ -13,7 +14,13 @@ class CustomListView extends StatelessWidget {
         itemBuilder: (context , index) {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child:const CustomNotesCard(),
+          child:GestureDetector(
+            onTap:() {
+              Navigator.push(
+                context, MaterialPageRoute(builder: (context) 
+                => const EditCardPage()),);
+            },
+            child: const CustomNotesCard(),),
         );
       }),
     );
