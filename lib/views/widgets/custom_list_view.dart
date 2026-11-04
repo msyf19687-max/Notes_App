@@ -20,7 +20,7 @@ class CustomListView extends StatelessWidget {
                 context, MaterialPageRoute(builder: (context) 
                 => const EditCardPage()),);
             },
-            child: const CustomNotesCard(),),
+            child: const CustomNotesCard()),
         );
       }),
     );

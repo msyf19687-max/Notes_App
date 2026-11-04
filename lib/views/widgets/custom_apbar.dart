@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:notse_app/views/widgets/custom_icon.dart';
 
 class CustomApbar extends StatelessWidget {
-  const CustomApbar({super.key});
-
+  const CustomApbar({super.key , required this.title, required this.icon});
+ final String title;
+ final IconData icon;
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text('Notes',
+        Text(title,
         style: TextStyle(
           fontSize: 28,
         ),
        ),
        Spacer(),
-       CustomIcon(),
+       CustomIcon(icon: icon),
       ],
     );
   }
