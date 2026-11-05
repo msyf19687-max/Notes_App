@@ -10,19 +10,57 @@ class AddNoteButtomSheet extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(height: 16,),
-            CustomTextField(customHint: 'Title'),
-            SizedBox(height: 24,),
-            CustomTextField(customHint: 'Content', maxlines: 4),
-            SizedBox(height: 60,),
-            CustomButtom(),
-            SizedBox(height: 70,),
-          ],
-        ),
+        child: AddInfoToCard(),
       ),
     );
   }
 }
 
+class AddInfoToCard extends StatefulWidget {
+  const AddInfoToCard({super.key});
+
+  @override
+  State<AddInfoToCard> createState() => _AddInfoToCardState();
+}
+
+class _AddInfoToCardState extends State<AddInfoToCard> {
+  GlobalKey<FormState> formkey = GlobalKey();
+  AutovalidateMode autovalidatemode = AutovalidateMode.disabled;
+
+  String? title , subtitle;
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key : formkey,
+      autovalidateMode: autovalidatemode,
+      child: Column(
+            children: [
+              SizedBox(height: 16,),
+              CustomTextField(customHint: 'Title', onSaved: (value) {
+                title = value;
+              }),
+              SizedBox(height: 24,),
+              CustomTextField(customHint: 'Subtitle', onSaved: (value) {
+                subtitle = value;
+              }, maxlines: 4,),
+              SizedBox(height: 60,),
+              CustomButtom(
+                ontap: (){
+                  if(formkey.currentState!.validate())
+                  {
+                     formkey.currentState!.save();
+                  } else 
+                  {
+                    setState((){
+                      autovalidatemode = AutovalidateMode.always;
+                    });
+                  }
+                }
+              ),
+              SizedBox(height: 70,),
+            ],
+          ),
+    );
+  }
+}
