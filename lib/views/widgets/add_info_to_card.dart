@@ -1,4 +1,7 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notse_app/cubits/add_note_to_cubit/add_note_to_cubit.dart';
+import 'package:notse_app/models/note_model.dart';
 import 'package:notse_app/views/widgets/custom_buttom.dart';
 import 'package:notse_app/views/widgets/custom_textfield.dart';
 
@@ -36,6 +39,13 @@ class _AddInfoToCardState extends State<AddInfoToCard> {
                   if(formkey.currentState!.validate())
                   {
                      formkey.currentState!.save();
+                     var notemodel = NoteModel(
+                      title: title!, 
+                      subtitle: subtitle!, 
+                      date: DateTime.now().toString(),
+                      color:Colors.blue.value, 
+                    );
+                      BlocProvider.of<NotesCubit>(context).addNote(notemodel);
                   } else 
                   {
                     setState((){
