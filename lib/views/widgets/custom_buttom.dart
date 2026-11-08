@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CustomButtom extends StatelessWidget {
-  const CustomButtom({super.key, this.ontap});
+  const CustomButtom({super.key, this.ontap , this.isLoading = false});
   final void Function()? ontap;
+  final bool isLoading;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -14,8 +15,16 @@ class CustomButtom extends StatelessWidget {
          color : Colors.lightBlue,
          borderRadius: BorderRadius.circular(16),
         ),
-        child: const Center(
-          child: Text('Add' , style: TextStyle(
+        child: Center(
+          child: isLoading ?
+           SizedBox(
+            height : 24,
+            width : 24,
+             child: const CircularProgressIndicator(
+              color : Colors.black,
+             ),
+           ) :  
+           const Text('Add' , style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
             color: Colors.black,
