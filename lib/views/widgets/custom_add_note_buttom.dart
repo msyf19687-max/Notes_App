@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:notse_app/views/widgets/custom_buttom.dart';
-import 'package:notse_app/views/widgets/custom_textfield.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:notse_app/cubits/add_note_to_cubit/add_note_state.dart';
+import 'package:notse_app/cubits/add_note_to_cubit/add_note_to_cubit.dart';
+import 'package:notse_app/views/widgets/add_info_to_card.dart';
 
 class AddNoteButtomSheet extends StatelessWidget {
   const AddNoteButtomSheet({super.key});
@@ -10,57 +13,28 @@ class AddNoteButtomSheet extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: SingleChildScrollView(
-        child: AddInfoToCard(),
+        child: BlocConsumer<NotesCubit, NoteState>(
+          listener: (context, state) {
+            
+            if(state is AddNoteSuccess)
+            {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Note Is Added Successfuly'),),
+              );
+            }
+
+            if(state is AddNoteFailure)
+            {
+              Navigator.pop(context);
+            }
+          },
+          builder: (context, state) {
+            return ModalProgressHUD(
+              inAsyncCall: state is AddNoteLoading ? true : false,
+              child: AddInfoToCard());
+          },
+        ),
       ),
-    );
-  }
-}
-
-class AddInfoToCard extends StatefulWidget {
-  const AddInfoToCard({super.key});
-
-  @override
-  State<AddInfoToCard> createState() => _AddInfoToCardState();
-}
-
-class _AddInfoToCardState extends State<AddInfoToCard> {
-  GlobalKey<FormState> formkey = GlobalKey();
-  AutovalidateMode autovalidatemode = AutovalidateMode.disabled;
-
-  String? title , subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return Form(
-      key : formkey,
-      autovalidateMode: autovalidatemode,
-      child: Column(
-            children: [
-              SizedBox(height: 16,),
-              CustomTextField(customHint: 'Title', onSaved: (value) {
-                title = value;
-              }),
-              SizedBox(height: 24,),
-              CustomTextField(customHint: 'Subtitle', onSaved: (value) {
-                subtitle = value;
-              }, maxlines: 4,),
-              SizedBox(height: 60,),
-              CustomButtom(
-                ontap: (){
-                  if(formkey.currentState!.validate())
-                  {
-                     formkey.currentState!.save();
-                  } else 
-                  {
-                    setState((){
-                      autovalidatemode = AutovalidateMode.always;
-                    });
-                  }
-                }
-              ),
-              SizedBox(height: 70,),
-            ],
-          ),
     );
   }
 }
