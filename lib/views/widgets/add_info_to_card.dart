@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:notse_app/cubits/add_note_to_cubit/add_note_state.dart';
 import 'package:notse_app/cubits/add_note_to_cubit/add_note_to_cubit.dart';
 import 'package:notse_app/models/note_model.dart';
@@ -48,11 +49,13 @@ class _AddInfoToCardState extends State<AddInfoToCard> {
                 isLoading: state is AddNoteLoading ? true : false,
                 ontap: () {
                   if (formkey.currentState!.validate()) {
+                    var currntDate = DateTime.now();
+                    var date = DateFormat('dd-mm-yyyy').format(currntDate);
                     formkey.currentState!.save();
                     var notemodel = NoteModel(
                       title: title!,
                       subtitle: subtitle!,
-                      date: DateTime.now().toString(),
+                      date: date,
                       color: Colors.blue.value,
                     );
                     BlocProvider.of<AddNotesCubit>(context).addNote(notemodel);
