@@ -42,7 +42,7 @@ class _AddInfoToCardState extends State<AddInfoToCard> {
             maxlines: 4,
           ),
           SizedBox(height: 60),
-          BlocBuilder<NotesCubit, NoteState>(
+          BlocBuilder<AddNotesCubit, AddNoteState>(
             builder: (context, state) {
               return CustomButtom(
                 isLoading: state is AddNoteLoading ? true : false,
@@ -55,7 +55,7 @@ class _AddInfoToCardState extends State<AddInfoToCard> {
                       date: DateTime.now().toString(),
                       color: Colors.blue.value,
                     );
-                    BlocProvider.of<NotesCubit>(context).addNote(notemodel);
+                    BlocProvider.of<AddNotesCubit>(context).addNote(notemodel);
                   } else {
                     setState(() {
                       autovalidatemode = AutovalidateMode.always;
