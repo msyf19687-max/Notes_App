@@ -31,7 +31,7 @@ class CustomListView extends StatelessWidget {
                       ),
                     );
                   },
-                  child: const CustomNotesCard(),
+                  child:CustomNotesCard(notes: notes[index]),
                 ),
               );
             },

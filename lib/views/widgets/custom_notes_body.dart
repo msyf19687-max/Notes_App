@@ -15,8 +15,9 @@ class _NotesBodyState extends State<NotesBody> {
   @override
   void initState ()
   {
+     super.initState();
     BlocProvider.of<NoteCubit>(context).fechAllNotes();
-    super.initState();
+   
   }
   Widget build(BuildContext context) {
     return Padding(

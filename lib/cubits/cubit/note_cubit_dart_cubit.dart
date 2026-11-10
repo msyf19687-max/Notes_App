@@ -9,9 +9,9 @@ class NoteCubit extends Cubit<NoteState> {
   NoteCubit() : super(NoteInitial());
  
     List<NoteModel>? notes;
-    fechAllNotes() async
+    fechAllNotes() 
   {
-     var noteBox = await Hive.box<NoteModel>(notesBox); 
+     var noteBox = Hive.box<NoteModel>(notesBox); 
      notes = noteBox.values.toList();
   }
 }
