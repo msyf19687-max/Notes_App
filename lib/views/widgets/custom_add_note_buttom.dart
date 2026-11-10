@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notse_app/cubits/add_note_to_cubit/add_note_state.dart';
 import 'package:notse_app/cubits/add_note_to_cubit/add_note_to_cubit.dart';
+import 'package:notse_app/cubits/cubit/note_cubit_dart_cubit.dart';
 import 'package:notse_app/views/widgets/add_info_to_card.dart';
 
 class AddNoteButtomSheet extends StatelessWidget {
@@ -17,11 +18,10 @@ class AddNoteButtomSheet extends StatelessWidget {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text('Note Is Added Successfuly')),
             );
+            BlocProvider.of<NoteCubit>(context).fechAllNotes();
+             Navigator.pop(context);
           }
-      
-          if (state is AddNoteFailure) {
-            Navigator.pop(context);
-          }
+          if (state is AddNoteFailure) {}
         },
         builder: (context, state) {
           return AbsorbPointer(
