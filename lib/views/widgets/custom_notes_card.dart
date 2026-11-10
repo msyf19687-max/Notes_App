@@ -32,7 +32,10 @@ class CustomNotesCard extends StatelessWidget {
             ),
             trailing : IconButton (
               padding: EdgeInsets.only(left: 16, bottom : 24,),
-              onPressed: (){},              
+              onPressed: ()
+              {
+                notes.delete();
+              },              
              icon: Icon(Icons.delete,
              color: Colors.black,
              size: 30,
