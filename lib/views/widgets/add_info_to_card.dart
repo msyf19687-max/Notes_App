@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:notse_app/cubits/add_note_to_cubit/add_note_state.dart';
 import 'package:notse_app/cubits/add_note_to_cubit/add_note_to_cubit.dart';
 import 'package:notse_app/models/note_model.dart';
+import 'package:notse_app/views/widgets/colors_list.dart';
 import 'package:notse_app/views/widgets/custom_buttom.dart';
 import 'package:notse_app/views/widgets/custom_textfield.dart';
 
@@ -42,7 +43,9 @@ class _AddInfoToCardState extends State<AddInfoToCard> {
             },
             maxlines: 4,
           ),
-          SizedBox(height: 60),
+          SizedBox(height: 15),
+            ColorsList(),
+          SizedBox(height: 50),
           BlocBuilder<AddNotesCubit, AddNoteState>(
             builder: (context, state) {
               return CustomButtom(
