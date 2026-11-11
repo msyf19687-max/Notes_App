@@ -13,12 +13,11 @@ void main() async {
   await Hive.openBox<NoteModel>(notesBox);
 
   Bloc.observer = SimpleBlockObserver();
-
   runApp(const NotesApp());
 }
 
 class NotesApp extends StatelessWidget {
-  const NotesApp({super.key});
+  const NotesApp({super.key,});
 
   @override
   Widget build(BuildContext context) {

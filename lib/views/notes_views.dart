@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notse_app/cubits/cubit/note_cubit_dart_cubit.dart';
+import 'package:notse_app/models/note_model.dart';
 import 'package:notse_app/views/widgets/custom_add_note_buttom.dart';
 import 'package:notse_app/views/widgets/custom_notes_body.dart';
 
 class NotesViews extends StatelessWidget {
-  const NotesViews({super.key});
+  const NotesViews({super.key,});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class NotesViews extends StatelessWidget {
         },
         child: const Icon(Icons.add),
       ),
-      body: const NotesBody(),
+      body:  NotesBody(),
     );
   }
 }

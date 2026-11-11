@@ -5,13 +5,13 @@ part 'note_model.g.dart'; // this is the generated file for this model class
 class NoteModel extends HiveObject
 {
  @HiveField(0) // we are giving a field Id to variable from zero, must be unique
- final String title;
+  String title;
  @HiveField(1)
- final String subtitle;
+  String subtitle;
  @HiveField(2)
  final String date;
  @HiveField(3)
- final int color;
+  int color;
 
   NoteModel({
     required this.title, 

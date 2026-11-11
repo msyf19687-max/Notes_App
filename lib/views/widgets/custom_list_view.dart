@@ -6,7 +6,9 @@ import 'package:notse_app/views/edit_card_page.dart';
 import 'package:notse_app/views/widgets/custom_notes_card.dart';
 
 class CustomListView extends StatelessWidget {
-  const CustomListView({super.key});
+  const CustomListView({super.key,
+
+   });
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,9 @@ class CustomListView extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const EditCardPage(),
+                        builder: (context) => EditCardPage(
+                          note: notes[index],
+                          ),
                       ),
                     );
                   },
